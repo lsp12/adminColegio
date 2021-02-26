@@ -67,9 +67,7 @@ include_once("assets/modulos/head.php");
                         <!-- <canvas id="myChart"></canvas> -->
 
                         <div class="container">
-                          <div class="d-flex justify-content-end">
-                            <h4>Filtrar por nombre: </h4>  <form action="javascript:void(0);" id="busquedaForm"><input type="text" id="valor" onkeyup="myFunction()"></form>
-                          </div>
+                          
                           
                           <table class="table table-success table-striped">
                             <thead>
@@ -78,7 +76,7 @@ include_once("assets/modulos/head.php");
                                 <th>Edad</th>
                               </tr>
                             </thead>
-                            <tbody id="cuerpo"></tbody>
+                            <tbody></tbody>
                           </table>
                         </div>
                       </div>
