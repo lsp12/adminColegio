@@ -57,32 +57,19 @@ include_once("assets/modulos/head.php");
                                     ?>
                                     </select>
                                 </div>
-                                <!-- <div class="col-3">
-                                    <label for="inputAddress2" class="form-label">Horario</label>
-                                    <input type="text" class="form-control" id="inputAddress2" name="edad" required>
-                                </div> -->
                                 
-                                <!-- <div class="col-md-3">
-                                    <label for="inputCity" class="form-label">Sexo</label>
-                                    <input type="text" class="form-control" id="inputCity" name="sexo" required>
-                                </div>
                                 <div class="col-md-6">
-                                    <label for="inputCity" class="form-label">ciudad</label>
-                                    <input type="text" class="form-control" id="inputCity" name="ciudad" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="inputCity" class="form-label">direccion</label>
-                                    <input type="text" class="form-control" id="inputCity" name="direccion" required>
-                                </div>
-                                <div class="col-md-3">
-                                <label for="inputEmail4" class="form-label">Materia</label>
-                                        <select class="form-select" id="specificSizeSelect" name="mate" required>
+                                    <label for="inputPassword4" class="form-label">Materia</label>
+                                    <select class="form-select" id="specificSizeSelect" name="materi" required>
                                         <option selected>Elija...</option>
-                                        <
-                                       
-                                        </select>
-                                </div> -->
-                               
+                                    <?php
+                                    $dia=consulta("materia");
+                                         foreach ($dia as $lista) {
+                                          echo '<option value="'.$lista['id_materia'].'">'.$lista['nombre_materia'].'</option> ';
+                                        }
+                                    ?>
+                                    </select>
+                                </div>
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary" name="maestros2">Guardar</button>
                                 </div>

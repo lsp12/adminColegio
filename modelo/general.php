@@ -53,6 +53,12 @@ function insertarHora($hora,$jorna,$posicion){
     $query= $con->query("INSERT INTO `horarios` (`id_horario`, `hora`, `section`, `posicion`) VALUES (NULL, '$hora', '$jorna', '$posicion')");
 }
 
+function consultaMa($materia){
+    global $con;
+    $query=$con->query("SELECT * FROM `maestros` WHERE id_materia=$materia");
+    return recorrer($query);
+}
+
 function consultaHoras($jornada){
     global $con;
     $query = $con->query("SELECT * FROM `horarios`  WHERE horarios.section = '$jornada' ORDER BY `posicion` ASC");
@@ -157,5 +163,42 @@ function borrarMateria($id){
 function borrarCurso($id){
     global $con;
     $query=$con->query("DELETE FROM `curso` WHERE `curso`.`id_curso` = $id");
+}
+
+//comprobacion
+function comprobar($idMaes,$idHora,$idDia,$periodo){
+    global $con;
+    $query=$con->query("SELECT * FROM `basico-cur` WHERE `basico-cur`.`id_maestro` = $idMaes AND `basico-cur`.`id_horario`=$idHora AND `basico-cur`.`id_dia`=$idDia");
+    return recorrer($query);
+   
+}
+
+function insertarBasico($id_mae,$id_cur,$periodo,$id_hora,$id_dia){
+    global $con;
+    $query=$con->query("INSERT INTO `basico-cur` (`id_bascu`, `id_maestro`, `id_curso`, `periodo`, `id_horario`, `id_dia`) 
+    VALUES (NULL, '$id_mae', '$id_cur', '$periodo', '$id_hora', '$id_dia')");
+}
+
+//consulta
+function consultarMaestr($id){
+    global $con;
+    $query=$con->query("SELECT * FROM `maestros` INNER JOIN materia on materia.id_materia = maestros.id_materia  WHERE maestros.id_maestro=$id");
+    return recorrer($query);
+}
+function consultaCruso($id){
+    global $con;
+    $query=$con->query("SELECT * FROM `curso` INNER JOIN especializacion ON especializacion.id_especia = curso.id_especia WHERE curso.id_curso=$id");
+    return recorrer($query);
+}
+function consultaHor($id){
+    global $con;
+    $query=$con->query("SELECT * FROM `horarios` WHERE horarios.id_horario = $id");
+    return recorrer($query);
+}
+
+function consultaDia($id){
+    global $con;
+    $query=$con->query("SELECT * FROM `dias` WHERE dias.id_dia = $id");
+    return recorrer($query);
 }
 ?>

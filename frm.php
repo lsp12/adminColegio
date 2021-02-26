@@ -41,6 +41,28 @@ if(isset($_POST['maestros'])){
 if(isset($_POST['maestros2'])){
     $_SESSION['cursos']=$_POST['cursosb'];
     $_SESSION['dia']=$_POST['diaCurso'];
-    header("location: basicoCursos3.php");
+    $materia=$_POST['materi'];
+    header("location: basicoCursos3.php?mate=$materia");
+}
+
+if(isset($_POST['maestros3'])){
+    $aux=comprobar($_POST['maestrob'],$_POST['horab'],$_SESSION['dia'],$_POST['periodoAca']);
+    if($aux==null){
+        $_SESSION['id_maestro']=$_POST['maestrob'];
+        $_SESSION['color']=$_POST['horab'];
+        echo $_SESSION['color'];
+        $_SESSION['periodo']=$_POST['periodoAca'];
+        echo" <script> alert(' ".var_dump($aux)." Maestro ya esta ocuapdo ese dia a esa hora')</script>";
+        header("location: confirmar.php");
+     }else{
+         echo "<script> alert('datos ingresados')</script>";
+     }
+}
+
+if(isset($_GET['enviarfin'])){
+
+
+    insertarBasico($_GET['id_maestro'],$_GET['id_curso'],$_GET['txt_periodo'],$_GET['id_hora'],$_GET['id_dia']);
+    header("location: confirmar.php");
 }
 ?>

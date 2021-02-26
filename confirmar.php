@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 $title="Asignacion de horarios y materias a los Cursos";
 include_once("assets/modulos/head.php");
@@ -31,47 +32,27 @@ include_once("assets/modulos/head.php");
                         <!-- <canvas id="myChart"></canvas> -->
 
                         <div class="container">
-                            <form class="row g-3" action="frm.php" method="POST">
-                           
-                                <div class="col-md-6">
-                                    <label for="inputPassword4" class="form-label">Maestro</label>
-                                    <select class="form-select" id="specificSizeSelect" name="maestrob" required>
-                                        <option selected>Elija...</option>
-                                        
-                                    <?php
-                                    $maestro=consultaMa($_GET['mate']);
-                                         foreach ($maestro as $lista) {
-                                          echo '<option value="'.$lista['id_maestro'].'">'.$lista['Nombre'].'</option> ';
-                                        }
-                                    ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputPassword4" class="form-label">Hora</label>
-                                    <select class="form-select" id="specificSizeSelect" name="horab" required>
-                                        <option selected>Elija...</option>
-                                    <?php
-                                    $hora=consultaHoras($_SESSION['jornada']);
-                                         foreach ($hora as $lista) {
-                                          echo '<option value="'.$lista['id_horario'].'">'.$lista['hora'].'</option> ';
-                                        }
-                                    ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputPassword4" class="form-label">Periodo academico</label>
-                                    <select class="form-select" id="specificSizeSelect" name="periodoAca" required>
-                                        <option selected>Elija...</option>
-                                        <option value="noviembre-febrero_2021" >noviembre-febrero 2021</option>
-                                        <option value="mayo-octubre_2021" >mayo-octubre 2021</option>
-                                    </select>
-                                </div>
-                               
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary" name="maestros3">Guardar</button>
-                                </div>
-                               
-                            </form>
+                            <?php
+                                $mae=consultarMaestr($_SESSION['id_maestro']);
+                                $cur=consultaCruso($_SESSION['cursos']);
+                                $hora=consultaHor($_SESSION['color']);
+                                $dia=consultaDia($_SESSION['dia']);
+                                
+                            ?>
+                            <h2><p>Confirmarcion de datos</p></h2>
+                            <p>Maestro:<?php echo $mae[0]['Nombre']." ".$mae[0]['Apellido'] ?></p>
+                            <p>Materia: <?php echo $mae[0]['nombre_materia'] ?></p>
+                            <p>Curso:<?php echo $cur[0]['paralelo'] ?></p>
+                            <p>nivel:<?php echo $cur[0]['nivel'] ?></p>
+                            <p>especialidad:<?php echo $cur[0]['nom_especia'] ?></p>
+                            <p>Seccion:<?php echo $cur[0]['jornada'] ?></p>
+                            <p>hora:<?php echo $hora[0]['hora'] ?></p>
+                            <p>dia: <?php echo $dia[0]['dia_semana'] ?></p>
+                            <p>Periodo: <?php echo $_SESSION['periodo'] ?></p>
+                            <?php
+                                echo '<a href="frm.php?id_maestro='.$_SESSION["id_maestro"].'&id_curso='.$_SESSION['cursos'].'&id_hora='.$_SESSION['color'].'&id_dia='.$_SESSION['dia'].'&txt_periodo='.$_SESSION['periodo'].'&enviarfin=" class="btn btn-primary">Guardar</a>';
+                            ?>
+                            
                         </div>
                       </div>
                     </div>
@@ -142,7 +123,7 @@ include_once("assets/modulos/head.php");
 
     </div>
     
-    
 <?php
     include_once("assets/modulos/end-scrip.php");
+    ob_end_flush();
 ?>
