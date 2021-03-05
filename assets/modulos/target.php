@@ -6,8 +6,8 @@
                         <h6 class="font-weight-bold mb-lg-0">Cursos agregados Recientemente</h6>
                       </div>
                       <?php
-                        $cursoAgr=targetas();
-                        foreach ($cursoAgr as $lista) {
+                        $cursoAgra=targetas();
+                        foreach ($cursoAgra as $lista) {
                           echo '
                           <div class="card-body">
                           <div class="d-flex border-bottom pb-lg-0 pt-lg-0">

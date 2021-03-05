@@ -26,6 +26,7 @@ function targetas(){
     global $con;
     $query =$con->query("SELECT
     COUNT(*),
+    curso.id_curso,
     curso.nivel,
     curso.jornada,
     especializacion.nom_especia
@@ -106,17 +107,6 @@ function busqueda($jornada, $id_especi,$nivel){
     $query =$con->query("SELECT * FROM `curso` WHERE curso.id_especia =$id_especi AND curso.nivel ='$nivel' AND curso.jornada='$jornada'");
     return recorrer($query);
     
-    /* $query =$con ->query("SELECT
-    *
-FROM
-    `basico-cur`
-INNER JOIN curso ON curso.id_curso = `basico-cur`.id_curso
-INNER JOIN maestros ON maestros.id_maestro = `basico-cur`.`id_maestro`
-INNER JOIN horarios ON horarios.id_horario = `basico-cur`.`id_horario`
-INNER JOIN dias ON dias.id_dia = `basico-cur`.`id_dia`
-WHERE
-    curso.jornada <> '$jornada' AND curso.id_especia <> $id_especi");
-     return recorrer($query); */
 }
 
 function insertarDias($dia){
@@ -200,5 +190,39 @@ function consultaDia($id){
     global $con;
     $query=$con->query("SELECT * FROM `dias` WHERE dias.id_dia = $id");
     return recorrer($query);
+}
+function horariosCol($id,$dia){
+    global $con;
+    $query=$con->query("SELECT id_bascu, maestros.Nombre, materia.nombre_materia,curso.paralelo,dia_semana, horarios.hora FROM `basico-cur` 
+    INNER JOIN curso ON curso.id_curso = `basico-cur`.`id_curso` 
+    INNER JOIN dias ON dias.id_dia = `basico-cur`.`id_dia` 
+    INNER JOIN maestros ON maestros.id_maestro = `basico-cur`.`id_maestro` 
+    INNER JOIN materia ON materia.id_materia = maestros.id_materia 
+    INNER JOIN horarios ON horarios.id_horario =`basico-cur`.`id_horario` 
+    WHERE dias.dia_semana = '$dia' AND curso.id_curso = $id ORDER BY horarios.posicion");
+    return recorrer($query);
+}
+
+function Dias(){
+    global $con;
+    $query=$con->query("SELECT * FROM `dias` ORDER BY `id_dia` ASC");
+    return recorrer($query);
+}
+
+function buscarCurs($txtjorna,$id){
+    global $con;
+    $query=$con->query("SELECT * FROM `curso` WHERE jornada='$txtjorna' AND id_especia=$id");
+    return recorrer($query);
+}
+
+function Ver_cursos(){
+    global $con;
+    $query=$con->query("SELECT * FROM `curso` INNER JOIN especializacion ON especializacion.id_especia=curso.id_especia ORDER BY `curso`.`paralelo` ASC");
+    return recorrer($query);
+}
+
+function EliminarHorar($id){
+    global $con;
+    $query =$con->query("DELETE FROM `basico-cur` WHERE `basico-cur`.`id_bascu` = $id");
 }
 ?>

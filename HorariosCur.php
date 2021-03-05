@@ -1,5 +1,5 @@
 <?php
-$title="Bienvenido";
+$title="Horas de Clase";
 include_once("assets/modulos/head.php");
 ?>
   
@@ -16,63 +16,59 @@ include_once("assets/modulos/head.php");
           <div id="content">
             <?php
                 include_once("assets/modulos/section.php");
-                $cursoAgr=targetas();
             ?>
-            <section class="bg-mix">
-              <div class="container">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+            
             <section class="bg-secondary">
               <div class="container">
                 <div class="row">
                   <div class="col-lg-8 my-3">
                     <div class="card">
                       <div class="card-header bg-light">
-                        <h6 class="font-weight-bold">Cursos creados</h6>
+                        <h6 class="font-weight-bold">Formulario para ingresar maestros</h6>
                       </div>
                       <div class="card-body">
                         <!-- <canvas id="myChart"></canvas> -->
 
                         <div class="container">
-                          
-                          
-                          <table class="table table-success table-striped">
+                        <table class="table table-success table-striped">
                             <thead>
                               <tr>
-                                <th>N°</th>
+                                <th>#</th>
+                                <th>Paralelo</th>
+                                <th>Especializacion</th>
+                                <th>Seccion</th>
                                 <th>Nivel</th>
-                                <th>Jornada</th>
-                                <th>Especialidad</th>
+                                <th>Ver Horario</th>
                               </tr>
                             </thead>
                             <tbody>
                             <?php
-                            $i=1;
-                              foreach ($cursoAgr as $lista ) {
-                                echo '
-                                <tr>
-                                            <th scope="row">'.$i.'</th>
-                                            <td>'.$lista['nivel'].'</td>
-                                            <td>'.$lista['jornada'].'</td>
+                                
+                                    $horasMatutina=Ver_cursos("matutino");
+                                    
+                                    foreach ($horasMatutina as $lista) {
+                                        
+                                        echo '
+                                        <tr>
+                                        <th scope="row">'.$lista['id_curso'].'</th>
+                                            <td>'.$lista['paralelo'].'</td>
                                             <td>'.$lista['nom_especia'].'</td>
-                                            
-                                        </tr>  
-                                ';
-                                $i++;
-                              }
-                            ?>
+                                            <td>'.$lista['jornada'].'</td>
+                                            <td>'.$lista['nivel'].'</td>
+                                            <td><a href="HorariosCur2.php?idCur='.$lista['id_curso'].'" type="button" class="btn btn-danger">Ver horario</a></td>
+                                        </tr>        
+                                        ';
+                                        
+                                    }
+                                ?>
                             </tbody>
                           </table>
                         </div>
+                        
                       </div>
+                      
                     </div>
+                    
                   </div>
 
                   <?php
@@ -82,6 +78,8 @@ include_once("assets/modulos/head.php");
               </div>
               
             </section>
+            
+            
             
           </div>
           

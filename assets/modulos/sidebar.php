@@ -12,6 +12,7 @@
                  <a href="afinidades.php" class="d-block p-3"><i class="bi bi-spellcheck me-2 lead"></i><span>Agregar Materias</span></a>
                  <a href="Cursos.php" class="d-block p-3"><i class="bi bi-book-half me-2 lead"></i><span>Cursos</span></a>
                  <a href="basicoCursos.php" class="d-block p-3"><i class="bi bi-book-half me-2 lead"></i><span>Asignar materias a los cursos</span></a>
+                 <a href="HorariosCur.php" class="d-block p-3"><i class="bi bi-book-half me-2 lead"></i><span>Ver cursos</span></a>
              </div>
          </div>
         </div>

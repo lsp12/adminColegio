@@ -72,26 +72,7 @@ include_once("assets/modulos/head.php");
                                 </div>
                                 
                                 
-                                <!-- <div class="col-md-3">
-                                    <label for="inputCity" class="form-label">Sexo</label>
-                                    <input type="text" class="form-control" id="inputCity" name="sexo" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputCity" class="form-label">ciudad</label>
-                                    <input type="text" class="form-control" id="inputCity" name="ciudad" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="inputCity" class="form-label">direccion</label>
-                                    <input type="text" class="form-control" id="inputCity" name="direccion" required>
-                                </div>
-                                <div class="col-md-3">
-                                <label for="inputEmail4" class="form-label">Materia</label>
-                                        <select class="form-select" id="specificSizeSelect" name="mate" required>
-                                        <option selected>Elija...</option>
-                                       
-                                       
-                                        </select>
-                                </div> -->
+                                
                                
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary" name="maestros">Guardar</button>

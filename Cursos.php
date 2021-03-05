@@ -154,6 +154,7 @@ include_once("assets/modulos/head.php");
                             <?php
                                 
                                     $Cursos=consultaCursos("matutino");
+                                    $i=1;
                                     foreach ($Cursos as $lista) {
                                         
                                         echo '
@@ -166,7 +167,7 @@ include_once("assets/modulos/head.php");
                                             <td><a href="eliminar.php?cursos='.$lista['id_curso'].'" type="button" class="btn btn-danger">Borrar</a></td>
                                         </tr>       
                                         ';
-                                        
+                                        $i++;
                                     }
                                 ?>
                             </tbody>

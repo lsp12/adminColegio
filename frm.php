@@ -55,7 +55,7 @@ if(isset($_POST['maestros3'])){
         echo" <script> alert(' ".var_dump($aux)." Maestro ya esta ocuapdo ese dia a esa hora')</script>";
         header("location: confirmar.php");
      }else{
-         echo "<script> alert('datos ingresados')</script>";
+         echo "<script> alert('Maestro ya esta ocuapdo ese dia a esa hora')</script>";
      }
 }
 
@@ -63,6 +63,16 @@ if(isset($_GET['enviarfin'])){
 
 
     insertarBasico($_GET['id_maestro'],$_GET['id_curso'],$_GET['txt_periodo'],$_GET['id_hora'],$_GET['id_dia']);
-    header("location: confirmar.php");
+    header("location: basicoCursos.php");
 }
+if(isset($_POST['HorarioCru'])){
+    $arr=buscarCurs($_POST['jornadaHor'],$_POST['especialHor']);
+    header("location: HorariosCur2.php?miCurso=".serialize($arr)."");
+}
+
+if(isset($_GET['idCur'])){
+    EliminarHorar($_GET['idCur']);
+    header("location: HorariosCur2.php?idCur=".$_GET['idBasico']."");
+}
+
 ?>
