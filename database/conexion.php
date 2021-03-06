@@ -6,7 +6,7 @@ function connectDatabase(){
     $host='localhost';
     $user='root';
     $pass='';
-    $db='colegio';
+    $db='colegio_bolivariano';
     $puerto=null;
 
     /* $host='mysql-11088-0.cloudclusters.net';
