@@ -8,10 +8,11 @@ function connectDatabase(){
     $pass='';
     $db='colegio_bolivariano';
     $puerto=null; */
+    
     $host='mysql-11088-0.cloudclusters.net';
     $user='vera';
     $pass='1207345768';
-    $db='turismo_vera';
+    $db='colegio_bolivariano';
     $puerto=11136;
 
     $mysqli = new mysqli($host,$user,$pass,$db,$puerto); 
