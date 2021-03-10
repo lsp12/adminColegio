@@ -2,17 +2,17 @@
 
 function connectDatabase(){
     
-/* 
-    $host='localhost';
+
+    /* $host='localhost';
     $user='root';
     $pass='';
-    $db='colegio_bolivariano';
+    $db='colesim';
     $puerto=null; */
     
     $host='mysql-11088-0.cloudclusters.net';
     $user='vera';
     $pass='1207345768';
-    $db='colegio_bolivariano';
+    $db='colegio';
     $puerto=11136;
 
     $mysqli = new mysqli($host,$user,$pass,$db,$puerto); 

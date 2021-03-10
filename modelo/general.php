@@ -158,14 +158,14 @@ function borrarCurso($id){
 //comprobacion
 function comprobar($idMaes,$idHora,$idDia,$periodo){
     global $con;
-    $query=$con->query("SELECT * FROM `basico-cur` WHERE `basico-cur`.`id_maestro` = $idMaes AND `basico-cur`.`id_horario`=$idHora AND `basico-cur`.`id_dia`=$idDia");
+    $query=$con->query("SELECT * FROM basico_cur WHERE basico_cur.`id_maestro` = $idMaes AND basico_cur.`id_horario`=$idHora AND basico_cur.`id_dia`=$idDia");
     return recorrer($query);
    
 }
 
 function insertarBasico($id_mae,$id_cur,$periodo,$id_hora,$id_dia){
     global $con;
-    $query=$con->query("INSERT INTO `basico-cur` (`id_bascu`, `id_maestro`, `id_curso`, `periodo`, `id_horario`, `id_dia`) 
+    $query=$con->query("INSERT INTO basico_cur (`id_bascu`, `id_maestro`, `id_curso`, `periodo`, `id_horario`, `id_dia`) 
     VALUES (NULL, '$id_mae', '$id_cur', '$periodo', '$id_hora', '$id_dia')");
 }
 
@@ -193,12 +193,12 @@ function consultaDia($id){
 }
 function horariosCol($id,$dia){
     global $con;
-    $query=$con->query("SELECT id_bascu, maestros.Nombre, materia.nombre_materia,curso.paralelo,dia_semana, horarios.hora FROM `basico-cur` 
-    INNER JOIN curso ON curso.id_curso = `basico-cur`.`id_curso` 
-    INNER JOIN dias ON dias.id_dia = `basico-cur`.`id_dia` 
-    INNER JOIN maestros ON maestros.id_maestro = `basico-cur`.`id_maestro` 
+    $query=$con->query("SELECT id_bascu, maestros.Nombre, materia.nombre_materia,curso.paralelo,dia_semana, horarios.hora FROM basico_cur 
+    INNER JOIN curso ON curso.id_curso = basico_cur.`id_curso` 
+    INNER JOIN dias ON dias.id_dia = basico_cur.`id_dia` 
+    INNER JOIN maestros ON maestros.id_maestro = basico_cur.`id_maestro` 
     INNER JOIN materia ON materia.id_materia = maestros.id_materia 
-    INNER JOIN horarios ON horarios.id_horario =`basico-cur`.`id_horario` 
+    INNER JOIN horarios ON horarios.id_horario =basico_cur.`id_horario` 
     WHERE dias.dia_semana = '$dia' AND curso.id_curso = $id ORDER BY horarios.posicion");
     return recorrer($query);
 }
@@ -223,6 +223,6 @@ function Ver_cursos(){
 
 function EliminarHorar($id){
     global $con;
-    $query =$con->query("DELETE FROM `basico-cur` WHERE `basico-cur`.`id_bascu` = $id");
+    $query =$con->query("DELETE FROM basico_cur WHERE basico_cur.`id_bascu` = $id");
 }
 ?>
