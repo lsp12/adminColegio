@@ -19,7 +19,7 @@ if(isset($_POST['especial'])){
 
 if(isset($_POST['CursosA'])){
     ConsultarCurso($_POST['paralelo'],$_POST['tipoC'],$_POST['Nivel'],$_POST['JornadaCuerso']);
-    header("location: Cursos.php");
+    
 }
 
 if (isset($_POST['guardarMateria'])) {
