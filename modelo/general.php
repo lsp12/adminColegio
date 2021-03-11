@@ -225,4 +225,16 @@ function EliminarHorar($id){
     global $con;
     $query =$con->query("DELETE FROM basico_cur WHERE basico_cur.`id_bascu` = $id");
 }
+
+function ConsultarCurso($paralelo,$id_esp,$nivel,$jornada){
+    global $con;
+    $query =$con->query("SELECT * FROM `curso` WHERE curso.paralelo='$paralelo' AND curso.id_especia='$id_esp' AND curso.nivel='$nivel' AND curso.jornada='$jornada'");
+    $arr=recorrer($query);
+    if($arr==null){
+        insertarCurso($paralelo,$id_esp,$nivel,$jornada);
+    }else{
+        echo" <script> alert('el curso ya esta registrado')</script>";
+        header("location: Cursos.php");
+    }
+}
 ?>

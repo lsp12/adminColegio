@@ -25,7 +25,7 @@ include_once("assets/modulos/head.php");
                   <div class="col-lg-8 my-3">
                     <div class="card">
                       <div class="card-header bg-light">
-                        <h6 class="font-weight-bold">Formulario para ingresar maestros</h6>
+                      <h6 class="font-weight-bold">formulario de asginaciones de maestros a los cursos</h6>
                       </div>
                       <div class="card-body">
                         <!-- <canvas id="myChart"></canvas> -->

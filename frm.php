@@ -18,7 +18,7 @@ if(isset($_POST['especial'])){
 }
 
 if(isset($_POST['CursosA'])){
-    insertarCurso($_POST['paralelo'],$_POST['tipoC'],$_POST['Nivel'],$_POST['JornadaCuerso']);
+    ConsultarCurso($_POST['paralelo'],$_POST['tipoC'],$_POST['Nivel'],$_POST['JornadaCuerso']);
     header("location: Cursos.php");
 }
 

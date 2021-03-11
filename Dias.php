@@ -28,7 +28,7 @@ if(isset($_GET['num'])){
                   <div class="col-lg-8 my-3">
                     <div class="card">
                       <div class="card-header bg-light">
-                        <h6 class="font-weight-bold">Formulario para ingresar maestros</h6>
+                        <h6 class="font-weight-bold">Formulario para ingresar los dias de clase</h6>
                       </div>
                       <div class="card-body">
                         <!-- <canvas id="myChart"></canvas> -->

@@ -6,10 +6,10 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
 
-              <form class="d-flex position-relative my-2 my-lg-2 d-inline-flex">
+              <!-- <form class="d-flex position-relative my-2 my-lg-2 d-inline-flex">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
                 <button class="btn btn-search position-absolute" type="submit"><i class="bi bi-search"></i></button>
-              </form>
+              </form> -->
 
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
