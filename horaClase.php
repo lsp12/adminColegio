@@ -45,7 +45,7 @@ include_once("assets/modulos/head.php");
                                         </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="inputEmail4" class="form-label">Posicion</label>
+                                    <label for="inputEmail4" class="form-label">Posicion en el horario</label>
                                     <input type="text" class="form-control" id="inputEmail4" name="posicion" required>
                                 </div>
                                 <div class="col-12">
@@ -82,7 +82,9 @@ include_once("assets/modulos/head.php");
                               <tr>
                                 <th>#</th>
                                 <th>horas</th>
+                                <th>Posicion en el horario</th>
                                 <th>accion</th>
+                                
                               </tr>
                             </thead>
                             <tbody>
@@ -95,6 +97,7 @@ include_once("assets/modulos/head.php");
                                         <tr>
                                         <th scope="row">'.$lista['posicion'].'</th>
                                             <td>'.$lista['hora'].'</td>
+                                            <td>'.$lista['posicion'].'</td>
                                             <td><a href="eliminar.php?horas='.$lista['id_horario'].'" type="button" class="btn btn-danger">Borrar</a></td>
                                         </tr>        
                                         ';
@@ -123,6 +126,7 @@ include_once("assets/modulos/head.php");
                               <tr>
                                 <th>#</th>
                                 <th>horas</th>
+                                <th>Posicion en el horario</th>
                                 <th>Accion</th>
                               </tr>
                             </thead>
@@ -136,6 +140,7 @@ include_once("assets/modulos/head.php");
                                         <tr>
                                             <th scope="row">'.$lista['posicion'].'</th>
                                             <td>'.$lista['hora'].'</td>
+                                            <td>'.$lista['posicion'].'</td>
                                             <td><a href="eliminar.php?horas='.$lista['id_horario'].'" type="button" class="btn btn-danger">Borrar</a></td>
                                         </tr>        
                                         ';

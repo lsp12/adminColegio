@@ -75,7 +75,7 @@ include_once("assets/modulos/head.php");
                                         </select>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary" name="maestros">Guardar</button>
+                                    <button type="submit" class="btn btn-primary" name="maestrosPrim">Guardar</button>
                                 </div>
                             </form>
                         </div>
@@ -148,7 +148,23 @@ include_once("assets/modulos/head.php");
 
     </div>
     
+    <script>
     
+    let error = getParameterByName("error");
+    
+    window.history.replaceState({}, '', 'maestros.php');
+
+    if (error=="true") {
+        alert("cedula repetido");
+    }
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    </script>
 <?php
     include_once("assets/modulos/end-scrip.php");
 ?>

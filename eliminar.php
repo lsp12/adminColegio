@@ -9,7 +9,7 @@ if(isset($_GET['maestros'])){
 
 if(isset($_GET['horas'])){
     borrarHoras($_GET['horas']);
-    header("location: horaClase.php");
+    header("location: formulariosBasicos.php?selec=Horas");
 }
 
 if(isset($_GET['dia'])){
@@ -19,12 +19,12 @@ if(isset($_GET['dia'])){
 
 if(isset($_GET['espe'])){
     borrrarEspecialidad($_GET['espe']);
-    header("location: Especializaciones.php");
+    header("location: formulariosBasicos.php?selec=especializaciones");
 }
 
 if(isset($_GET['mate'])){
     borrarMateria($_GET['mate']);
-    header("location: afinidades.php");
+    header("location: formulariosBasicos.php?selec=materias");
 }
 
 if(isset($_GET['cursos'])){

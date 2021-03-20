@@ -6,7 +6,7 @@
                     <p class="lead text-muted">Revisa la ultima informacion</p>
                   </div>
                   <div class="col-lg-3 d-flex">
-                    <button class="btn btn-primary w-100 align-self-center">Notificacion</button>
+                    <!-- <button class="btn btn-primary w-100 align-self-center">Notificacion</button> -->
                   </div>
                 </div>
               </div>
