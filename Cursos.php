@@ -33,7 +33,13 @@ include_once("assets/modulos/head.php");
                             <form class="row g-3" action="frm.php" method="POST">
                                 <div class="col-md-6">
                                     <label for="inputEmail4" class="form-label">Paralelo</label>
-                                    <input type="text" class="form-control" id="inputEmail4" name="paralelo" required>
+                                    <select class="form-select" name="paralelo" required>
+                                        <option selected>Elija...</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        </select>
                                 </div>
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">Tipo de curso</label>

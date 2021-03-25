@@ -34,7 +34,7 @@ include_once("assets/modulos/head.php");
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th>horario</th>
+                                <th>Paralelo</th>
                                 <th>materia</th>
                                 
                                 <th>Accion</th>
@@ -68,7 +68,7 @@ include_once("assets/modulos/head.php");
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th>horario</th>
+                                <th>Paralelo</th>
                                 <th>materia</th>
                                 
                                 <th>Accion</th>
@@ -103,7 +103,7 @@ include_once("assets/modulos/head.php");
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th>horario</th>
+                                <th>Paralelo</th>
                                 <th>materia</th>
                                 
                                 <th>Accion</th>
@@ -136,7 +136,7 @@ include_once("assets/modulos/head.php");
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th>horario</th>
+                                <th>Paralelo</th>
                                 <th>materia</th>
                                 
                                 <th>Accion</th>
@@ -170,7 +170,7 @@ include_once("assets/modulos/head.php");
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th>horario</th>
+                                <th>Paralelo</th>
                                 <th>materia</th>
                                 
                                 <th>Accion</th>
@@ -202,7 +202,7 @@ include_once("assets/modulos/head.php");
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th>horario</th>
+                                <th>Paralelo</th>
                                 <th>materia</th>
                                 
                                 <th>Accion</th>
@@ -234,7 +234,7 @@ include_once("assets/modulos/head.php");
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th>horario</th>
+                                <th>Paralelo</th>
                                 <th>materia</th>
                                 
                                 <th>Accion</th>

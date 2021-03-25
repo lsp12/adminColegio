@@ -1,22 +1,9 @@
-<?php
-require_once('modelo/general.php');
-session_start();
-if(isset( $_SESSION['maestro'])){
-  $title="Bienvenido maestro".$_SESSION['maestro'];
-}else if(isset( $_SESSION['admin'])){
-  $title="Bienvenido administrador ".$_SESSION['admin'];
-}else{
-  header("location: login.php");
-}
-?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -25,7 +12,6 @@ if(isset( $_SESSION['maestro'])){
 
     <link rel="stylesheet" href="assets/css/wave.css">
 
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <title>Sistema Academico</title>
-  </head>
-<body>
+    <link rel="stylesheet" href="assets/css/styles-login.css">
+
+</head>

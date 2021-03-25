@@ -12,24 +12,41 @@ function recorrer($query)
     return $rows;
 }
 
-function ingresarMaestro($id_materia, $cedula, $nombre, $apellido, $edad, $direccion, $sexo, $ciudad)
+function ingresarMaestro($id_materia, $cedula, $nombre, $apellido, $edad, $direccion, $sexo, $ciudad, $correo, $contraseña)
 {
     global $con;
 
-    $querys = $con->query("SELECT * FROM `maestros` WHERE `cedula`= '$cedula'");
+    $querys = $con->query("SELECT * FROM `maestros` WHERE `cedula`= '$cedula' OR correoma='$correo'");
 
     $arr = recorrer($querys);
     if ($arr == null) {
-        $query = $con->query("INSERT INTO `maestros` (`id_maestro`, `id_materia`, `cedula`, `Nombre`, `Apellido`, `edad`, `direccion`, `sexo`, `ciudad`) 
-    VALUES (NULL, '$id_materia', '$cedula', '$nombre', '$apellido', '$edad', '$direccion', '$sexo', '$ciudad')");
-        header("location: maestros.php");
+        $contraseña = password_hash($contraseña, PASSWORD_DEFAULT);
+
+        $query = $con->query("INSERT INTO `maestros` (`id_maestro`, `id_materia`, `cedula`, `Nombre`, `Apellido`, `edad`, `direccion`, `sexo`, `ciudad`, `correoma`, `contraseñama`) 
+    VALUES (NULL, '$id_materia', '$cedula', '$nombre', '$apellido', '$edad', '$direccion', '$sexo', '$ciudad', '$correo', '$contraseña');");
+        header("location: maestros.php?selec=Maestros");
     } else {
-
-        header("location: maestros.php?error=true");
+        header("location: maestros.php?error=true&selec=Maestros");
     }
-
-    
 }
+
+function ingresarAdmin($correo, $contraseña)
+{
+    global $con;
+
+    $querys = $con->query("SELECT * FROM `login` WHERE correoadm ='$correo'");
+
+    $arr = recorrer($querys);
+    if ($arr == null) {
+        $contraseña = password_hash($contraseña, PASSWORD_DEFAULT);
+
+        $query = $con->query("INSERT INTO `login` (`id_loginadm`, `correoadm`, `contraseñaadm`) VALUES (NULL, '$correo', '$contraseña');");
+        header("location: maestros.php?selec=Administrador");
+    } else {
+        header("location: maestros.php?error=true&selec=Administrador");
+    }
+}
+
 function consulta($table)
 {
     global $con;
@@ -65,6 +82,18 @@ function consultaMaestros()
     $query = $con->query("SELECT * FROM `maestros` INNER JOIN materia ON materia.id_materia = maestros.id_materia");
     return recorrer($query);
 }
+function borrarLogAdm($id)
+{
+    global $con;
+    $query = $con->query("DELETE FROM `login` WHERE `login`.`id_loginadm` = $id");
+}
+
+function consultaLogin()
+{
+    global $con;
+    $query = $con->query("SELECT * FROM `login`");
+    return recorrer($query);
+}
 
 function insertarHora($hora, $jorna, $posicion)
 {
@@ -86,6 +115,21 @@ function consultaMa($materia)
     global $con;
     $query = $con->query("SELECT * FROM `maestros` WHERE id_materia=$materia");
     return recorrer($query);
+}
+
+function confirmarCorreo($correo, $rol)
+{
+    global $con;
+
+    if ($rol == "Maestro") {
+        $query1 = $con->query("SELECT * FROM `maestros` WHERE correoma='$correo'");
+        return recorrer($query1);
+    } else if ($rol == "Administrador") {
+        $query = $con->query("SELECT * FROM `login` WHERE correoadm ='$correo'");
+        return recorrer($query);
+    } else {
+        header("location: login.php");
+    }
 }
 
 function consultaHoras($jornada)
@@ -216,15 +260,40 @@ function borrarCurso($id)
 }
 
 //comprobacion
-function comprobar($idMaes, $idHora, $idDia, $periodo)
+function comprobar($idMaes, $idHora, $idDia, $idCuros)
 {
     global $con;
-    $query = $con->query("SELECT * FROM basico_cur WHERE basico_cur.`id_maestro` = $idMaes AND basico_cur.`id_horario`=$idHora AND basico_cur.`id_dia`=$idDia");
-    return recorrer($query);
+    $query = $con->query("SELECT * FROM basico_cur INNER JOIN maestros ON maestros.id_maestro = basico_cur.id_maestro INNER JOIN materia ON materia.id_materia = maestros.id_materia INNER JOIN curso ON curso.id_curso = basico_cur.id_curso INNER JOIN horarios ON horarios.id_horario = basico_cur.id_horario INNER JOIN especializacion ON especializacion.id_especia =curso.id_especia WHERE ( basico_cur.`id_horario`=$idHora AND basico_cur.`id_dia`=$idDia AND basico_cur.id_curso=$idCuros)");
+    $arr = recorrer($query);
+    if ($arr == null) {
+        $query = $con->query("SELECT * FROM basico_cur INNER JOIN curso ON curso.id_curso = basico_cur.id_curso INNER JOIN horarios ON horarios.id_horario = basico_cur.id_horario INNER JOIN especializacion ON especializacion.id_especia =curso.id_especia WHERE ( basico_cur.`id_horario`=$idHora AND basico_cur.`id_dia`=$idDia AND basico_cur.id_maestro=$idMaes)");
+        $arr = recorrer($query);
+        if ($arr == null) {
+            return $arr;
+        } else {
+            echo " /* <script> alert('el Maestro ya esta ocupado ese dia a esa hora') */
+            function MyFuntion() {
+                window.history.back();
+            }
+            </script>";
+            echo "El maestro ya esta ocupado en la hora " . $arr[0]["hora"] . " con el curso " . $arr[0]["paralelo"] . " Especalidad " . $arr[0]["nom_especia"] . " De " . $arr[0]["nivel"] . " nivel " . $arr[0]["jornada"] . ' <button type="submit" class="btn btn-primary" onclick="MyFuntion()" name="maestros3">Regresar</button>';
+            //echo var_dump($arr);
+            return $arr;
+        }
+    } else {
+        echo " /* <script> alert('el horario ya esta ocupado ese dia a esa hora') */
+        function MyFuntion() {
+            window.history.back();
+        }
+        </script>";
+        echo "El maestro " . $arr[0]["Nombre"] . " da la materia de " . $arr[0]["nombre_materia"] . " ocupa Da clases a la hora " . $arr[0]["hora"] . " con el curso " . $arr[0]["paralelo"] . " Especalidad " . $arr[0]["nom_especia"] . " De " . $arr[0]["nivel"] . " nivel " . $arr[0]["jornada"] . ' <button type="submit" class="btn btn-primary" onclick="MyFuntion()" name="maestros3">Regresar</button>';
+
+        return 5;
+    }
 }
 
-function mostrar(){
-    
+function mostrar()
+{
 }
 
 function insertarBasico($id_mae, $id_cur, $periodo, $id_hora, $id_dia)
@@ -294,6 +363,13 @@ function Ver_cursos()
     return recorrer($query);
 }
 
+function Ver_cursoMa($id)
+{
+    global $con;
+    $query = $con->query("SELECT * FROM `basico_cur` INNER JOIN maestros ON maestros.id_maestro= basico_cur.id_maestro INNER JOIN curso ON curso.id_curso =basico_cur.id_curso INNER JOIN especializacion ON especializacion.id_especia=curso.id_especia WHERE basico_cur.id_maestro =$id");
+    return recorrer($query);
+}
+
 function EliminarHorar($id)
 {
     global $con;
@@ -307,8 +383,29 @@ function ConsultarCurso($paralelo, $id_esp, $nivel, $jornada)
     $arr = recorrer($query);
     if ($arr == null) {
         insertarCurso($paralelo, $id_esp, $nivel, $jornada);
+        header("location: Cursos.php");
     } else {
         echo " <script> alert('el curso ya esta registrado')</script>";
         header("location: Cursos.php");
     }
+}
+
+function SelectCurso($id)
+{
+    global $con;
+    $query = $con->query("SELECT * FROM `curso` INNER JOIN especializacion ON especializacion.id_especia=curso.id_especia WHERE id_curso=$id");
+    return recorrer($query);
+}
+
+function BuscarCursoMa($id, $dia)
+{
+    global $con;
+    $query = $con->query("SELECT * FROM `basico_cur` INNER JOIN curso ON curso.id_curso = basico_cur.`id_curso` 
+    INNER JOIN dias ON dias.id_dia = basico_cur.`id_dia` 
+    INNER JOIN maestros ON maestros.id_maestro = basico_cur.`id_maestro` 
+    INNER JOIN materia ON materia.id_materia = maestros.id_materia 
+    INNER JOIN horarios ON horarios.id_horario =basico_cur.`id_horario`
+    INNER JOIN especializacion ON especializacion.id_especia =curso.id_especia  
+    WHERE basico_cur.id_maestro=$id and dias.dia_semana ='$dia'");
+    return recorrer($query);
 }

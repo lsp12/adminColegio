@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $title="Asignacion de horarios y materias a los Cursos";
 include_once("assets/modulos/head.php");
 ?>
@@ -83,57 +83,7 @@ include_once("assets/modulos/head.php");
               </div>
               
             </section>
-            <section class="bg-secondary" id="table">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-8 my-3">
-                    <div class="card">
-                      <div class="card-header bg-light">
-                        <h6 class="font-weight-bold">Maestros registrados</h6>
-                      </div>
-                      <div class="card-body">
-                        <div class="container">
-                        <table class="table table-success table-striped">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Cedula</th>
-                                <th>Nombre</th>
-                                <th>Sexo</th>
-                                <th>Materia</th>
-                                <th>accion</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $i=1;
-                                    $maestros=consultaMaestros();
-                                    foreach ($maestros as $lista) {
-                                        
-                                        echo '
-                                        <tr>
-                                            <th scope="row">'.$i.'</th>
-                                            <td>'.$lista['cedula'].'</td>
-                                            <td>'.$lista['Nombre'].'</td>
-                                            <td>'.$lista['sexo'].'</td>
-                                            <td>'.$lista['nombre_materia'].'</td>
-                                            <td><a href="#" type="button" class="btn btn-danger">Borrar</a></td>
-                                        </tr>        
-                                        ';
-                                        $i++;
-                                    }
-                                ?>
-                                
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-            </section>
+            
             
             
           </div>

@@ -1,6 +1,6 @@
 <?php
 ob_start();
-session_start();
+
 $title="Asignacion de horarios y materias a los Cursos";
 include_once("assets/modulos/head.php");
 ?>

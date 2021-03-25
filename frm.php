@@ -2,9 +2,20 @@
 session_start();
 require_once('modelo/general.php');
 if(isset($_POST['maestrosPrim'])){
-    
-ingresarMaestro($_POST['mate'],$_POST['cedula'],$_POST['nombre'],$_POST['apellido'],$_POST['edad'],$_POST['direccion'],$_POST['sexo'],$_POST['ciudad']);
-//header("location: maestros.php");
+    if($_POST['conMa']==$_POST['conMa2']){
+        ingresarMaestro($_POST['mate'],$_POST['cedula'],$_POST['nombre'],$_POST['apellido'],$_POST['edad'],
+        $_POST['direccion'],$_POST['sexo'],$_POST['ciudad'],$_POST['correoMa'],$_POST['conMa']);
+    }else{
+        header("location: maestros.php?error=contraseña&selec=Maestros");
+    }
+}
+
+if(isset($_POST['InserADM'])){
+    if($_POST['conAdmin']==$_POST['conAdmin2']){
+        ingresarAdmin($_POST['correoAdmin'],$_POST['conAdmin']);
+    }else{
+        header("location: maestros.php?error=contraseña&selec=Administrador");
+    }
 }
 
 if(isset($_POST['horasAca'])){
@@ -46,16 +57,17 @@ if(isset($_POST['maestros2'])){
 }
 
 if(isset($_POST['maestros3'])){
-    $aux=comprobar($_POST['maestrob'],$_POST['horab'],$_SESSION['dia'],$_POST['periodoAca']);
+    $aux=comprobar($_POST['maestrob'],$_POST['horab'],$_SESSION['dia'],$_SESSION['cursos']);
     if($aux==null){
         $_SESSION['id_maestro']=$_POST['maestrob'];
         $_SESSION['color']=$_POST['horab'];
         echo $_SESSION['color'];
         $_SESSION['periodo']=$_POST['periodoAca'];
-        echo" <script> alert(' ".var_dump($aux)." Maestro ya esta ocuapdo ese dia a esa hora')</script>";
+        //echo" <script> alert(' ".var_dump($aux)." Maestro ya esta ocuapdo ese dia a esa hora')</script>";
         header("location: confirmar.php");
      }else{
-         echo "<script> alert('Maestro ya esta ocuapdo ese dia a esa hora')</script>";
+         //echo "<script> alert('Maestro ya esta ocuapdo ese dia a esa hora curso".$_SESSION['cursos']." ".$_POST['horab']." ".$_SESSION['dia']." ".$_POST['periodoAca']."')</script>";
+         /* header("location: confirmar.php"); */
      }
 }
 
@@ -73,6 +85,11 @@ if(isset($_POST['HorarioCru'])){
 if(isset($_GET['idCur'])){
     EliminarHorar($_GET['idCur']);
     header("location: HorariosCur2.php?idCur=".$_GET['idBasico']."");
+}
+
+if(isset($_GET['idMa'])){
+    EliminarHorar($_GET['idMa']);
+    header("location: prueba.php");
 }
 
 ?>

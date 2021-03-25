@@ -1,0 +1,14 @@
+body{
+    overflow: auto;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    /* background-image: url('https://media.giphy.com/media/FeUZR5nvCHPpD6KZ1s/giphy.gif');  */
+    background-image: url('../img/fondo.jpg'); 
+    
+    height: 100%;
+}
+
+.backcolor{
+    background-color: rgb(195, 206, 44); height: 100%;
+}

@@ -1,6 +1,8 @@
 <?php
-$title="Bienvenido";
+
 include_once("assets/modulos/head.php");
+$title="Bienvenido ";
+
 ?>
   
     <div class="d-flex">

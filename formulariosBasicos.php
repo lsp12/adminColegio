@@ -107,7 +107,7 @@ include_once("assets/modulos/head.php");
                                             <label for="inputEmail4" class="form-label">Jornada</label>
 
                                             <select class="form-select" id="specificSizeSelect" name="jornada" required>
-                                                <option selected>Elija...</option>
+                                                <option >Elija...</option>
                                                 <option value="matutino">matutina</option>
                                                 <option value="vespertino">vespertina</option>
                                             </select>

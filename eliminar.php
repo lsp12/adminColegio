@@ -1,10 +1,11 @@
 <?php
+session_start();
 require_once('modelo/general.php');
 
 if(isset($_GET['maestros'])){
 
     borrarMaestros($_GET['maestros']);
-    header("location: maestros.php");
+    header("location: maestros.php?selec=Maestros");
 }
 
 if(isset($_GET['horas'])){
@@ -30,5 +31,16 @@ if(isset($_GET['mate'])){
 if(isset($_GET['cursos'])){
     borrarCurso($_GET['cursos']);
     header("location: Cursos.php");
+}
+
+if(isset($_GET['AdminLog'])){
+    borrarLogAdm($_GET['AdminLog']);
+    header("location: maestros.php?selec=Administrador");
+}
+
+if(isset($_GET['cerrar'])){
+    $_SESSION['maestro']=null;
+    $_SESSION['admin']=null;
+    header("location: login.php");
 }
 ?>

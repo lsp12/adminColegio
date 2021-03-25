@@ -43,8 +43,12 @@ include_once("assets/modulos/head.php");
                             </thead>
                             <tbody>
                             <?php
-                                
-                                    $horasMatutina=Ver_cursos("matutino");
+                                if(isset($_SESSION['admin'])){
+                                  $horasMatutina=Ver_cursos();
+                                }else{
+                                  $horasMatutina=Ver_cursoMa($_SESSION['maestro']);
+                                }
+                                    
                                     
                                     foreach ($horasMatutina as $lista) {
                                         
@@ -55,7 +59,9 @@ include_once("assets/modulos/head.php");
                                             <td>'.$lista['nom_especia'].'</td>
                                             <td>'.$lista['jornada'].'</td>
                                             <td>'.$lista['nivel'].'</td>
-                                            <td><a href="HorariosCur2.php?idCur='.$lista['id_curso'].'" type="button" class="btn btn-danger">Ver horario</a></td>
+                                            <td><a href="HorariosCur2.php?idCur='.$lista['id_curso'].'" type="button" class="btn btn-danger">Ver horario</a>
+                                            <a href="reporte.php?idCur='.$lista['id_curso'].'" type="button" class="btn btn-danger my-2">Generar reporte</a>
+                                            </td>
                                         </tr>        
                                         ';
                                         

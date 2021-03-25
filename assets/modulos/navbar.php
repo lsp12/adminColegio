@@ -22,7 +22,7 @@
                       <li><a class="dropdown-item" href="#">Usuario</a></li>
                       
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
+                      <li><a class="dropdown-item" href="eliminar.php?cerrar=ds">Cerrar Sesion</a></li>
                     </ul>
                   </li>
                   
