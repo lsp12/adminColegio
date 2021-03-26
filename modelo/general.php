@@ -95,14 +95,16 @@ function consultaLogin()
     return recorrer($query);
 }
 
-function insertarHora($hora, $jorna, $posicion)
+function insertarHora($hora, $jorna, $hora2)
 {
+
     global $con;
+    $hora=$hora."-".$hora2;
     $querys = $con->query("SELECT * FROM `horarios` WHERE `hora`= '$hora'");
 
     $arr = recorrer($querys);
     if ($arr == null) {
-        $query = $con->query("INSERT INTO `horarios` (`id_horario`, `hora`, `section`, `posicion`) VALUES (NULL, '$hora', '$jorna', '$posicion')");
+        $query = $con->query("INSERT INTO `horarios` (`id_horario`, `hora`, `section`, `posicion`) VALUES (NULL, '$hora', '$jorna', '0')");
         header("location: formulariosBasicos.php?selec=Horas");
     } else {
 
@@ -135,7 +137,7 @@ function confirmarCorreo($correo, $rol)
 function consultaHoras($jornada)
 {
     global $con;
-    $query = $con->query("SELECT * FROM `horarios`  WHERE horarios.section = '$jornada' ORDER BY `posicion` ASC");
+    $query = $con->query("SELECT * FROM `horarios`  WHERE horarios.section = '$jornada' ORDER BY `horarios`.`hora` ASC");
     return recorrer($query);
 }
 
@@ -338,7 +340,7 @@ function horariosCol($id, $dia)
     INNER JOIN maestros ON maestros.id_maestro = basico_cur.`id_maestro` 
     INNER JOIN materia ON materia.id_materia = maestros.id_materia 
     INNER JOIN horarios ON horarios.id_horario =basico_cur.`id_horario` 
-    WHERE dias.dia_semana = '$dia' AND curso.id_curso = $id ORDER BY horarios.posicion");
+    WHERE dias.dia_semana = '$dia' AND curso.id_curso = $id ORDER BY `horarios`.`hora` asc");
     return recorrer($query);
 }
 

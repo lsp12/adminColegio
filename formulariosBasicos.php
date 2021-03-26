@@ -99,9 +99,15 @@ include_once("assets/modulos/head.php");
 
 
                                     <form class="row g-3" action="frm.php" method="POST">
-                                        <div class="col-md-6">
-                                            <label for="inputEmail4" class="form-label">ingrese la hora</label>
-                                            <input type="text" class="form-control" id="inputEmail4" name="hora" required>
+                                        <div class="col-md-3">
+                                            <label for="inputEmail4" class="form-label">Hora inicio</label>
+                                            <!-- <input type="text" class="form-control" id="inputEmail4" name="hora" required> -->
+                                            <input type="time" class="form-control" id="inputEmail4" name="hora" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="inputEmail4" class="form-label">Hora final</label>
+                                            <!-- <input type="text" class="form-control" id="inputEmail4" name="hora" required> -->
+                                            <input type="time" class="form-control" id="inputEmail4" name="hora2" required>
                                         </div>
                                         <div class="col-md-3">
                                             <label for="inputEmail4" class="form-label">Jornada</label>
@@ -112,10 +118,10 @@ include_once("assets/modulos/head.php");
                                                 <option value="vespertino">vespertina</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3">
+                                        <!-- <div class="col-md-3">
                                             <label for="inputEmail4" class="form-label">Posicion en el horario</label>
                                             <input type="text" class="form-control" id="inputEmail4" name="posicion" required>
-                                        </div>
+                                        </div> -->
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary" name="horasAca">Guardar</button>
                                         </div>
@@ -146,7 +152,6 @@ include_once("assets/modulos/head.php");
                                                 <tr>
                                                     <th>#</th>
                                                     <th>horas</th>
-                                                    <th>Posicion en el horario</th>
                                                     <th>accion</th>
 
                                                 </tr>
@@ -161,7 +166,6 @@ include_once("assets/modulos/head.php");
                                         <tr>
                                         <th scope="row">' . $lista['posicion'] . '</th>
                                             <td>' . $lista['hora'] . '</td>
-                                            <td>' . $lista['posicion'] . '</td>
                                             <td><a href="eliminar.php?horas=' . $lista['id_horario'] . '" type="button" class="btn btn-danger">Borrar</a></td>
                                         </tr>        
                                         ';
@@ -189,7 +193,6 @@ include_once("assets/modulos/head.php");
                                                 <tr>
                                                     <th>#</th>
                                                     <th>horas</th>
-                                                    <th>Posicion en el horario</th>
                                                     <th>Accion</th>
                                                 </tr>
                                             </thead>
@@ -203,7 +206,6 @@ include_once("assets/modulos/head.php");
                                         <tr>
                                             <th scope="row">' . $lista['posicion'] . '</th>
                                             <td>' . $lista['hora'] . '</td>
-                                            <td>' . $lista['posicion'] . '</td>
                                             <td><a href="eliminar.php?horas=' . $lista['id_horario'] . '" type="button" class="btn btn-danger">Borrar</a></td>
                                         </tr>        
                                         ';

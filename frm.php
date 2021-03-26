@@ -19,7 +19,7 @@ if(isset($_POST['InserADM'])){
 }
 
 if(isset($_POST['horasAca'])){
-    insertarHora($_POST['hora'],$_POST['jornada'],$_POST['posicion']);
+    insertarHora($_POST['hora'],$_POST['jornada'],$_POST['hora2']);
     //header("location: formulariosBasicos.php?selec=Horas");
 }
 

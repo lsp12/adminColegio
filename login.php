@@ -6,7 +6,7 @@ require_once('modelo/general.php');
 
 if (isset($_SESSION['maestro'])) {
   header("location: index.php");
-}else if(isset($_SESSION['admin'])){
+} else if (isset($_SESSION['admin'])) {
   header("location: index.php");
 }
 
@@ -35,19 +35,12 @@ if (isset($_POST['enviar'])) {
         } else {
           echo '<script> alert ("Datos incorrectos, revise y vuelva ha intentarlo") </script>';
         }
-
       } else if ($_POST['rol'] == "Administrador") {
         if (password_verify($clave, $res[0]['contraseñaadm']) > 0) {
-          if ("admin@gmail.com" == $email) {
-            $_SESSION['admin'] = $res[0]['id_loginadm '];
-            echo '<script> alert ("ingresado correctamente") </script>';
-            header('location: index.php');
-          } else {
-
-            $_SESSION['admin'] = $res[0]['id_loginadm'];
-            echo '<script> alert ("ingresado como administrador") </script>';
-            header('location: index.php');
-          }
+          
+          $_SESSION['admin'] = $res[0]['id_loginadm'];
+          echo '<script> alert ("ingresado como administrador") </script>';
+          header('location: index.php');
         } else {
           echo '<script> alert ("Datos incorrectos, revise y vuelva ha intentarlo") </script>';
         }
