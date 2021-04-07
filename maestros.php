@@ -39,7 +39,7 @@ include_once("assets/modulos/head.php");
                     <form class="row g-3" action="frm.php" method="POST">
                       <div class="col-md-6">
                         <label for="inputEmail4" class="form-label">cedula</label>
-                        <input type="text" class="form-control" id="inputEmail4" name="cedula" required>
+                        <input type="text" class="form-control"  maxlength="10" id="inputEmail4" name="cedula" required>
                       </div>
                       <div class="col-md-6">
                         <label for="inputPassword4" class="form-label">nombre</label>
@@ -51,7 +51,7 @@ include_once("assets/modulos/head.php");
                       </div>
                       <div class="col-3">
                         <label for="inputAddress2" class="form-label">edad</label>
-                        <input type="text" class="form-control" id="inputAddress2" name="edad" required>
+                        <input type="number" min="18" class="form-control"  id="edad" name="edad" required>
                       </div>
                       <div class="col-md-3">
                         <label for="inputCity" class="form-label">Sexo</label>
@@ -82,7 +82,7 @@ include_once("assets/modulos/head.php");
                       </div>
                       <div class="col-md-6">
                         <label for="inputEmail4" class="form-label">Correo</label>
-                        <input type="text" class="form-control" id="inputEmail4" name="correoMa" required>
+                        <input type="email" class="form-control" id="inputEmail4" name="correoMa" required>
                       </div>
                       <div class="col-md-6">
                         <label for="inputPassword4" class="form-label">Contraseña</label>

@@ -2,9 +2,9 @@
             
             <div class="container-fluid">
               <!-- <a class="navbar-brand" href="#">Sistema Acedemico</a> -->
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
+              
+                <img src="logo/logo.jpeg" alt="" style="width: 100%; max-width: 5rem; min-width: 2rem;">
+              
 
               <!-- <form class="d-flex position-relative my-2 my-lg-2 d-inline-flex">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">

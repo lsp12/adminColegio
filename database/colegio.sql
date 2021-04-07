@@ -38,7 +38,7 @@ CREATE TABLE `basico_cur` (
   CONSTRAINT `basico_cur_ibfk_4` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `basico_cur_ibfk_5` FOREIGN KEY (`id_maestro`) REFERENCES `maestros` (`id_maestro`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `basico_cur_ibfk_6` FOREIGN KEY (`id_dia`) REFERENCES `dias` (`id_dia`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `basico_cur` (
 
 LOCK TABLES `basico_cur` WRITE;
 /*!40000 ALTER TABLE `basico_cur` DISABLE KEYS */;
-INSERT INTO `basico_cur` VALUES (2,5,1,'0',2,1),(3,4,1,'0',2,2),(4,10,1,'0',2,3),(5,4,1,'0',2,4),(8,4,1,'mayo-octubre_2021',2,5),(9,5,1,'mayo-octubre_2021',3,5),(10,13,1,'mayo-octubre_2021',3,2),(11,13,1,'mayo-octubre_2021',3,1),(12,13,1,'mayo-octubre_2021',6,1),(13,13,15,'mayo-octubre_2021',2,1),(14,13,14,'mayo-octubre_2021',7,1);
+INSERT INTO `basico_cur` VALUES (2,5,1,'0',2,1),(3,4,1,'0',2,2),(4,10,1,'0',2,3),(5,4,1,'0',2,4),(8,4,1,'mayo-octubre_2021',2,5),(9,5,1,'mayo-octubre_2021',3,5),(10,13,1,'mayo-octubre_2021',3,2),(11,13,1,'mayo-octubre_2021',3,1),(12,13,1,'mayo-octubre_2021',6,1),(13,13,15,'mayo-octubre_2021',2,1),(14,13,14,'mayo-octubre_2021',7,1),(15,4,1,'mayo-octubre_2021',7,1);
 /*!40000 ALTER TABLE `basico_cur` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +142,7 @@ CREATE TABLE `horarios` (
   `section` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `posicion` int(11) NOT NULL,
   PRIMARY KEY (`id_horario`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `horarios` (
 
 LOCK TABLES `horarios` WRITE;
 /*!40000 ALTER TABLE `horarios` DISABLE KEYS */;
-INSERT INTO `horarios` VALUES (2,'7:30-8:15','vespertino',1),(3,'8:15-9:00','vespertino',2),(4,'1:30-2:15','matutino',1),(5,'2:15-3:00','matutino',2),(6,'9:00-9:45','vespertino',3),(7,'9:45-10:15','vespertino',4),(8,'10:15-11:00','vespertino',5),(9,'11:00-11:45','vespertino',6),(10,'11:45-12:30','vespertino',7),(11,'3:00-3:45','matutino',3),(12,'3:45-4:15','matutino',4),(13,'4:15-5:00','matutino',5),(14,'5:00-5:45','matutino',6),(15,'5:45-6:30','matutino',7);
+INSERT INTO `horarios` VALUES (2,'07:30-8:15','vespertino',1),(3,'08:15-9:00','vespertino',2),(4,'01:30-2:15','matutino',1),(5,'02:15-3:00','matutino',2),(6,'09:00-9:45','vespertino',3),(7,'09:45-10:15','vespertino',4),(8,'10:15-11:00','vespertino',5),(9,'11:00-11:45','vespertino',6),(10,'11:45-12:30','vespertino',7),(11,'03:00-3:45','matutino',3),(12,'03:45-4:15','matutino',4),(13,'04:15-5:00','matutino',5),(14,'05:00-5:45','matutino',6),(15,'05:45-6:30','matutino',7);
 /*!40000 ALTER TABLE `horarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +167,7 @@ CREATE TABLE `login` (
   `correoadm` varchar(100) NOT NULL,
   `contraseñaadm` varchar(350) NOT NULL,
   PRIMARY KEY (`id_loginadm`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,7 +176,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (3,'admin@das.com','$2y$10$ejGav11MEif3pI59ZOzgMuvyfKGliyCWzytXi1qqfP4CURI5sJgEy');
+INSERT INTO `login` VALUES (3,'admin@das.com','$2y$10$ejGav11MEif3pI59ZOzgMuvyfKGliyCWzytXi1qqfP4CURI5sJgEy'),(4,'admin@gmail.com','$2y$10$Ue.PY94tLfuAUKEYFZrNuOpIfID8j1p8qvZGTyRWPP6ItxsaiavrW');
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,4 +249,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-25 20:22:16
+-- Dump completed on 2021-04-06 19:48:16
