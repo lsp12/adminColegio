@@ -94,7 +94,7 @@ include_once("assets/modulos/head.php");
                   <div class="col-lg-6 my-3">
                     <div class="card">
                       <div class="card-header bg-light">
-                        <h6 class="font-weight-bold">Maestros registrados</h6>
+                        <h6 class="font-weight-bold">Cursos Vespertinos</h6>
                       </div>
                       <div class="card-body">
                         <div class="table-responsive">
@@ -139,7 +139,7 @@ include_once("assets/modulos/head.php");
                   <div class="col-lg-6 my-3">
                     <div class="card">
                       <div class="card-header bg-light">
-                        <h6 class="font-weight-bold">horas de matutino</h6>
+                        <h6 class="font-weight-bold">Cursos Matutino</h6>
                       </div>
                       <div class="card-body">
                         <!-- <canvas id="myChart"></canvas> -->
