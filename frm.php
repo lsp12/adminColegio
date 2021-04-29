@@ -46,7 +46,9 @@ if(isset($_POST['maestros'])){
     $_SESSION['jornada']=$_POST['jornada'];
     $busc=busqueda($_POST['jornada'],$_POST['Especialidad'],$_POST['Nivel']);
     $dias=consulta("dias");
-    header("location: basicoCursos2.php?busq=".serialize($busc)."&dias=".serialize($dias));
+    $mate=BuscarMateriaPorCUrso($_POST['Especialidad'],$_POST['Nivel']);
+    /* var_dump($mate); echo $_POST['Especialidad'],$_POST['Nivel']; */
+    header("location: basicoCursos2.php?busq=".serialize($busc)."&dias=".serialize($dias)."&mate=".serialize($mate));
 }
 
 if(isset($_POST['maestros2'])){
@@ -91,5 +93,20 @@ if(isset($_GET['idMa'])){
     EliminarHorar($_GET['idMa']);
     header("location: prueba.php");
 }
+
+if (isset($_POST['MateriasUNir'])) {
+    $pizza=$_POST['NivelCurs'];
+    list($nivel, $especial) = explode(":", $pizza);
+    
+    
+    ComprobarMateCur($_POST['materia'],$especial, $nivel);
+    //header("location: formulariosBasicos.php?selec=materias");
+}
+
+if(isset($_GET['elminarMC'])){
+    EliminarMateCur($_GET['mate'],$_GET['nivel'],$_GET['espcia']);
+    
+}
+
 
 ?>

@@ -24,7 +24,7 @@ include_once("assets/modulos/head.php");
                   <div class="col-lg-8 my-3">
                     <div class="card">
                       <div class="card-header bg-light">
-                        <h6 class="font-weight-bold">formulario de asginaciones de maestros a los cursos</h6>
+                        <h6 class="font-weight-bold">formulario de asginaciones de Maestros a los cursos</h6>
                       </div>
                       <div class="card-body">
                         
@@ -90,7 +90,7 @@ include_once("assets/modulos/head.php");
               </div>
               
             </section>
-            <section class="bg-secondary" id="table">
+            <!-- <section class="bg-secondary" id="table">
               <div class="container">
                 <div class="row">
                   <div class="col-lg-8 my-3">
@@ -99,8 +99,8 @@ include_once("assets/modulos/head.php");
                         <h6 class="font-weight-bold">Maestros registrados</h6>
                       </div>
                       <div class="card-body">
-                        <div class="container">
-                        <table class="table table-success table-striped">
+                        <div class="container"> -->
+                        <!-- <table class="table table-success table-striped">
                             <thead>
                               <tr>
                                 <th>#</th>
@@ -113,7 +113,7 @@ include_once("assets/modulos/head.php");
                             </thead>
                             <tbody>
                                 <?php
-                                $i=1;
+                               /*  $i=1;
                                     $maestros=consultaMaestros();
                                     foreach ($maestros as $lista) {
                                         
@@ -128,19 +128,19 @@ include_once("assets/modulos/head.php");
                                         </tr>        
                                         ';
                                         $i++;
-                                    }
+                                    } */
                                 ?>
                                 
                             </tbody>
-                          </table>
-                        </div>
+                          </table> -->
+                        <!-- </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               
-            </section>
+            </section> -->
             
             
           </div>

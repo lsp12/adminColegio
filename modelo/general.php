@@ -99,7 +99,7 @@ function insertarHora($hora, $jorna, $hora2)
 {
 
     global $con;
-    $hora=$hora."-".$hora2;
+    $hora = $hora . "-" . $hora2;
     $querys = $con->query("SELECT * FROM `horarios` WHERE `hora`= '$hora'");
 
     $arr = recorrer($querys);
@@ -385,10 +385,35 @@ function ConsultarCurso($paralelo, $id_esp, $nivel, $jornada)
     $arr = recorrer($query);
     if ($arr == null) {
         insertarCurso($paralelo, $id_esp, $nivel, $jornada);
-        header("location: Cursos.php");
+        InsertarCuRecien($paralelo, $id_esp, $nivel, $jornada);
+        //header("location: Cursos.php");
     } else {
         echo " <script> alert('el curso ya esta registrado')</script>";
         header("location: Cursos.php");
+    }
+}
+
+function InsertarCuRecien($paralelo, $id_esp, $nivel, $jornada)
+{
+    global $con;
+    $query = $con->query("SELECT id_materiaCU FROM cursos_materias AS cm INNER JOIN curso c ON c.id_curso= cm.id_cursoMA 
+    INNER JOIN especializacion e ON e.id_especia = c.id_especia INNER JOIN materia m 
+    ON m.id_materia=cm.id_materiaCU WHERE c.nivel= '$nivel' AND e.id_especia=$id_esp GROUP BY cm.id_materiaCU");
+
+    $arr2 = recorrer($query);
+    if ($arr2 != null) {
+        $query = $con->query("SELECT * FROM `curso` WHERE curso.paralelo='$paralelo' AND curso.id_especia='$id_esp' AND curso.nivel='$nivel' AND curso.jornada='$jornada'");
+        $arr = recorrer($query);
+        var_dump($arr2);
+        var_dump($arr);
+        foreach ($arr2 as $lista) {
+            $curso=$arr[0]['id_curso'];
+            $id_mate=$lista['id_materiaCU'];
+            $query=$con->query("INSERT INTO `cursos_materias` (`id_CM`, `id_materiaCU`, `id_cursoMA`) VALUES (NULL, '$id_mate', '$curso')");
+        }
+    }else{
+        echo " <script> alert('hubo error')</script>";
+        var_dump($arr2);
     }
 }
 
@@ -409,5 +434,93 @@ function BuscarCursoMa($id, $dia)
     INNER JOIN horarios ON horarios.id_horario =basico_cur.`id_horario`
     INNER JOIN especializacion ON especializacion.id_especia =curso.id_especia  
     WHERE basico_cur.id_maestro=$id and dias.dia_semana ='$dia'");
+    return recorrer($query);
+}
+
+function NivelesCurso()
+{
+    global $con;
+    $query = $con->query("SELECT curso.nivel, especializacion.nom_especia FROM `curso` INNER JOIN especializacion 
+    ON curso.id_especia = especializacion.id_especia GROUP BY curso.nivel, especializacion.nom_especia");
+    return recorrer($query);
+}
+
+function ComprobarMateCur($noMate, $nom_especia, $nivel)
+{
+    global $con;
+
+    $querys = $con->query("SELECT * FROM cursos_materias AS cm INNER JOIN curso c ON c.id_curso= cm.id_cursoMA INNER JOIN especializacion e 
+    ON e.id_especia = c.id_especia INNER JOIN materia m 
+    ON m.id_materia=cm.id_materiaCU WHERE m.id_materia='$noMate' AND c.nivel= '$nivel' AND e.nom_especia='$nom_especia'");
+
+    $arr = recorrer($querys);
+    if ($arr == null) {
+        $query = $con->query("SELECT curso.id_curso, curso.id_especia FROM `curso` INNER JOIN especializacion 
+        ON especializacion.id_especia = curso.id_especia WHERE nivel='$nivel' AND especializacion.nom_especia ='$nom_especia' ");
+
+        $query = recorrer($query);
+        var_dump($query);
+        foreach ($query as $lista) {
+            UnirMate($noMate, $lista["id_curso"]);
+            echo "<script> alert (" . $lista["id_curso"] . ")</script>";
+        }
+        header("location: CursosMaterias.php?selec=materias");
+    } else {
+        header("location: CursosMaterias.php?selec=materias&error=true");
+    }
+}
+
+function UnirMate($idMat, $idCurso)
+{
+    global $con;
+    $query = $con->query("INSERT INTO `cursos_materias` (`id_CM`, `id_materiaCU`, `id_cursoMA`) VALUES (NULL, '$idMat', '$idCurso')");
+}
+
+function MostrarCUMA()
+{
+    global $con;
+    $query = $con->query("SELECT c.nivel, e.nom_especia, m.nombre_materia FROM `cursos_materias` 
+    INNER JOIN curso c ON c.id_curso = cursos_materias.id_cursoMA 
+    INNER JOIN materia m ON m.id_materia = cursos_materias.id_materiaCU 
+    INNER JOIN especializacion e ON e.id_especia = c.id_especia GROUP BY c.nivel, e.nom_especia, m.nombre_materia");
+
+    return recorrer($query);
+}
+
+function EliminarMateCur($noMate, $nivel, $nom_especia)
+{
+    global $con;
+
+    $query = $con->query("SELECT * FROM cursos_materias AS cm INNER JOIN curso c ON c.id_curso=cm.id_cursoMA INNER JOIN materia m 
+        ON m.id_materia = cm.id_materiaCU INNER JOIN especializacion e 
+        ON e.id_especia = c.id_especia WHERE c.nivel = '$nivel' AND e.nom_especia='$nom_especia' AND m.nombre_materia='$noMate'");
+
+
+    $query = recorrer($query);
+    var_dump($query);
+    foreach ($query as $lista) {
+        eliminarMC($lista["id_materiaCU"], $lista["id_curso"]);
+
+
+        echo "<script> alert (" . $lista["id_curso"] . ")</script>";
+    }
+    header("location: CursosMaterias.php");
+}
+
+function eliminarMC($id_ma, $id_cur)
+{
+    global $con;
+    $query = $con->query("DELETE FROM `cursos_materias` 
+            WHERE `cursos_materias`.`id_materiaCU` = $id_ma AND cursos_materias.id_cursoMA=$id_cur");
+}
+
+function BuscarMateriaPorCUrso($especi, $nivel)
+{
+    global $con;
+    $query = $con->query("SELECT m.id_materia,m.nombre_materia FROM `cursos_materias` INNER JOIN curso c 
+    ON c.id_curso = cursos_materias.id_cursoMA INNER JOIN especializacion e ON e.id_especia = c.id_especia 
+    INNER JOIN materia m ON m.id_materia = cursos_materias.id_materiaCU 
+    WHERE e.id_especia ='$especi' and c.nivel='$nivel' GROUP BY m.nombre_materia, m.id_materia");
+
     return recorrer($query);
 }

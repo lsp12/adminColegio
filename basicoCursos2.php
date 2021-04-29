@@ -61,12 +61,17 @@ include_once("assets/modulos/head.php");
                                 <div class="col-md-6">
                                     <label for="inputPassword4" class="form-label">Materia</label>
                                     <select class="form-select" id="specificSizeSelect" name="materi" required>
-                                        <option selected>Elija...</option>
+                                        
                                     <?php
-                                    $dia=consulta("materia");
-                                         foreach ($dia as $lista) {
+                                    $mate=unserialize($_GET['mate']);
+                                    if($mate!=null){
+                                      echo "<option selected>Elija...</option>";
+                                      
+                                         foreach ($mate as $lista) {
                                           echo '<option value="'.$lista['id_materia'].'">'.$lista['nombre_materia'].'</option> ';
                                         }
+                                    }
+                                    
                                     ?>
                                     </select>
                                 </div>
@@ -86,7 +91,7 @@ include_once("assets/modulos/head.php");
               </div>
               
             </section>
-            <section class="bg-secondary" id="table">
+            <!-- <section class="bg-secondary" id="table">
               <div class="container">
                 <div class="row">
                   <div class="col-lg-8 my-3">
@@ -109,7 +114,7 @@ include_once("assets/modulos/head.php");
                             </thead>
                             <tbody>
                                 <?php
-                                $i=1;
+                                /* $i=1;
                                     $maestros=consultaMaestros();
                                     foreach ($maestros as $lista) {
                                         
@@ -124,7 +129,7 @@ include_once("assets/modulos/head.php");
                                         </tr>        
                                         ';
                                         $i++;
-                                    }
+                                    } */
                                 ?>
                                 
                             </tbody>
@@ -136,7 +141,7 @@ include_once("assets/modulos/head.php");
                 </div>
               </div>
               
-            </section>
+            </section> -->
             
             
           </div>

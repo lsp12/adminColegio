@@ -54,8 +54,12 @@ include_once("assets/modulos/head.php");
                         <input type="number" min="18" class="form-control"  id="edad" name="edad" required>
                       </div>
                       <div class="col-md-3">
-                        <label for="inputCity" class="form-label">Sexo</label>
-                        <input type="text" class="form-control" id="inputCity" name="sexo" required>
+                      <label for="inputCity" class="form-label">Sexo</label>
+                        <select class="form-select" id="specificSizeSelect" name="sexo" required>
+                          <option selected>Elija...</option>
+                          <option value="Masculino">Masculino</option>
+                          <option value="Masculino">Femenino</option>
+                        </select>
                       </div>
                       <div class="col-md-6">
                         <label for="inputCity" class="form-label">ciudad</label>

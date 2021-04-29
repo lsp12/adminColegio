@@ -32,24 +32,9 @@ include_once("assets/modulos/head.php");
 
                         <div class="container">
                             <form class="row g-3" action="frm.php" method="POST">
-                           
-                                <div class="col-md-6">
-                                    <label for="inputPassword4" class="form-label">Maestro</label>
-                                    <select class="form-select" id="specificSizeSelect" name="maestrob" required>
-                                        <option selected>Elija...</option>
-                                        
-                                    <?php
-                                    $maestro=consultaMa($_GET['mate']);
-                                         foreach ($maestro as $lista) {
-                                          echo '<option value="'.$lista['id_maestro'].'">'.$lista['Nombre'].'</option> ';
-                                        }
-                                    ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
+                            <div class="col-md-6">
                                     <label for="inputPassword4" class="form-label">Hora</label>
                                     <select class="form-select" id="specificSizeSelect" name="horab" required>
-                                        <option selected>Elija...</option>
                                     <?php
                                     $hora=consultaHoras($_SESSION['jornada']);
                                          foreach ($hora as $lista) {
@@ -61,12 +46,24 @@ include_once("assets/modulos/head.php");
                                 <div class="col-md-6">
                                     <label for="inputPassword4" class="form-label">Periodo academico</label>
                                     <select class="form-select" id="specificSizeSelect" name="periodoAca" required>
-                                        <option selected>Elija...</option>
                                         <option value="noviembre-febrero_2021" >noviembre-febrero 2021</option>
                                         <option value="mayo-octubre_2021" >mayo-octubre 2021</option>
                                     </select>
                                 </div>
-                               
+                                <div class="col-md-6">
+                                    <label for="inputPassword4" class="form-label">Maestro</label>
+                                    <select class="form-select" id="specificSizeSelect" name="maestrob" required>
+                                        <?php
+                                            $maestro=consultaMa($_GET['mate']);
+                                            if($maestro!=null){
+                                              echo "<option selected>Elija...</option>";
+                                              foreach ($maestro as $lista) {
+                                                echo '<option value="'.$lista['id_maestro'].'">'.$lista['Nombre'].'</option> ';
+                                              }
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary" name="maestros3">Guardar</button>
                                 </div>
