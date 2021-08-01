@@ -386,7 +386,7 @@ function ConsultarCurso($paralelo, $id_esp, $nivel, $jornada)
     if ($arr == null) {
         insertarCurso($paralelo, $id_esp, $nivel, $jornada);
         InsertarCuRecien($paralelo, $id_esp, $nivel, $jornada);
-        //header("location: Cursos.php");
+        header("location: Cursos.php"); 
     } else {
         echo " <script> alert('el curso ya esta registrado')</script>";
         header("location: Cursos.php");
